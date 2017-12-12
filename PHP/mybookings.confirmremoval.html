@@ -1,0 +1,62 @@
+﻿<div style="border: solid; width: 1300px;">
+
+    <table style="width: 100%;">
+
+        <style>
+            tr:nth-child(even) {background-color: #f2f2f2}
+        </style>
+
+        <caption style="background-color: rgb(0, 193, 255)"><h2 style="margin: 0; color: red;"><u>Annuleer Boeking</u></h2><hr/></caption>
+
+        <tr>
+            <td>Boeking:</td>
+            <td>$boeking_ID</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Datum:</td>
+            <td>$boeking_Startdatum - $boeking_Einddatum</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Hotel:</td>
+            <td>$hotel_HotelNaam</td>
+            <td></td>
+            <td>Stad:</td>
+            <td>$hotel_Stad</td>
+        </tr>
+        <tr>
+            <td>Kamer:</td>
+            <td>$boeking_KAMER_ID</td>
+            <td></td>
+            <td>Kamers:</td>
+            <td>$kamer_Kamers</td>
+            <td>Slaapplaatsen:</td>
+            <td>$kamer_Slaapplaatsen</td>
+        </tr>
+        <tr>
+            <td>Prijs: €</td>
+            <td>$boeking_Prijs</td>
+            <td></td>
+            <td>Status:</td>
+            <td>$boeking_status_Naam</td>
+        </tr>
+
+    </table>
+
+    <hr/>
+    <h2 style="margin: 0; text-align: center;">Weet u zeker dat u bovenstaande boeking wilt annuleren?</h2>
+    <h3 style="margin: 0; color: red; text-align: center;">U raakt eventuele kortingen kwijt!</h3>
+
+    <input type="button" style="background-color: red; width: 50%; margin: 0; font-weight: bold; height: 30px;" value="ANNULEER BOEKING" onclick="window.location = 'mybookings.php?action=cancelbooking&bookingid=$boeking_ID&confirmaction=true';"/>
+    <input type="button" style="background-color: lawngreen; margin: 0; width: 49%; font-weight:bold; height: 30px;" value="TERUG NAAR OVERZICHT" onclick="window.location = 'mybookings.php';"/>
+
+</div>

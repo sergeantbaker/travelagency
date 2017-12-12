@@ -1,0 +1,16 @@
+﻿Beste $klant_genderprefix $klant_Achternaam,<br/>
+<br/>
+Bij deze sturen wij u een annuleringsbevestiging van de volgende reis:<br/>
+Boekingsnummer: $boeking_ID<br/>
+Hotel: $hotel_HotelNaam ($hotel_Stad, $hotel_Land)<br/>
+Van: $boeking_Startdatum t/m $boeking_Einddatum<br/>
+Prijs: $boeking_Prijs<br/>
+<br/>
+Het spijt ons te moeten horen dat u uw boeking heeft geannuleerd!<br/>
+Wij hopen dat u niet ontevreden bent over de tot nu toe door ons geleverde diensten.<br/>
+Mocht dit wel het geval zijn dan staat onze klantenservice voor u klaar. Onze conctactgegevens zijn op onze website te vinden.<br/>
+Ook kunt u hier eventueel een klachtenformulier indienen.<br/>
+Wij hopen u voldoende te hebben geinformeerd over de annulering van uw boeking.<br/>
+<br/>
+Met vriendelijke groet,<br/>
+Team Reisbureau Groep5

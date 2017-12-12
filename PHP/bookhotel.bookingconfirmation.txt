@@ -1,0 +1,19 @@
+﻿Beste $klant_genderprefix $klant_Achternaam,<br/>
+<br/>
+Gefeliciteerd met uw boeking bij Reisbureau Groep5.<br/>
+Bij deze sturen wij u een bevestiging van uw zojuist geboekte reis.<br/>
+<br/>
+Mijn Reis:<br/>
+---------------------------------------------------<br/>
+Hotel: $hotel_HotelNaam ($hotel_Stad, $hotel_Land)<br/>
+Kamer: $kamer_ID met $kamer_Slaapplaatsen slaapplaatsen<br/>
+Van: $boeking_Startdatum t/m $boeking_Einddatum<br/>
+Boekingsnummer: $boeking_ID<br/>
+Tijdstempel: $curdate $curtime<br/>
+---------------------------------------------------<br/>
+<br/>
+Wij zijn blij met u als klant en hopen dat u tevreden zult zijn met uw geboekte reis.<br/>
+Alvast heel veel plezier en een prettige reis gewenst names het team van Reisbureau Groep 5.<br/>
+<br/>
+Met vriendelijke groeten,<br/>
+Team Reisbureau Groep 5

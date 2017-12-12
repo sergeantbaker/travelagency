@@ -1,0 +1,32 @@
+﻿Beste $klant_genderprefix $klant_Achternaam,<br/>
+<br/>
+Wij zijn blij u te mogen mededelen dat uw boeking met boekingsnummer $boeking_ID naar $hotel_HotelNaam succesvol is betaald en geregistreerd.<br/>
+Wij willen u bedanken dat u heeft gekozen voor Reisbureau Groep5! Hieronder vindt u een overzicht van uw reis en betaling.<br/>
+<br/>
+Op $curdate om $curtime heeft u de volgende boeking betaald:<br/>
+Boeking: $boeking_ID<br/>
+Hotel: $hotel_HotelNaam<br/>
+Stad: $hotel_Stad<br/>
+Kamernummer: $boeking_KAMER_ID<br/>
+Begindatum: $boeking_Startdatum<br/>
+Einddatum: $boeking_Einddatum<br/>
+Prijs: €$boeking_Prijs<br/>
+<br/>
+------------------------------------------------------------------------<br/>
+Betalingsoverzicht:<br/>
+<br/>
+Soort: $betalingsmethode<br/>
+<br/>
+$betalingsinstantie bevestigt uw betaling van €$boeking_Prijs aan<br/>
+sticthing Reisbureau Groep5.<br/>
+<br/>
+------------------------------------------------------------------------<br/>
+<br/>
+Zodra u terug bent van uw reis kunt u kunt u een review op onze site toevoegen aan uw reis.<br/>
+U kunt dit doen door op de onderstaande link te klikken:<br/>
+<a href="http://localhost:8080/review.php?action=add&bookingid=$boeking_ID">Plaats een review over mijn reis</a><br/>
+<br/>
+Wij hopen dat u veel plezier beleeft op uw geboekte reis en dat u in de toekomst weer voor ons als reisbureau zult kiezen.<br/>
+Hartelijk dank,<br/>
+<br/>
+Reisbureau Groep5

@@ -1,0 +1,258 @@
+﻿<div style="border: solid; width: 1300px;">
+
+    <table style="width: 100%;">
+
+        <style>
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+        </style>
+
+        <caption>
+            <h2 style="margin: 0; color: red;"><u>Boeking Betalen</u></h2>
+            <hr />
+            U staat op het punt de volgende boeking te betalen:
+        </caption>
+
+        <tr>
+            <td>Boeking:</td>
+            <td>$boeking_ID</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Datum:</td>
+            <td>$boeking_Startdatum - $boeking_Einddatum</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Hotel:</td>
+            <td>$hotel_HotelNaam</td>
+            <td>Stad:</td>
+            <td>$hotel_Stad</td>
+        </tr>
+        <tr>
+            <td>Kamer:</td>
+            <td>$boeking_KAMER_ID</td>
+            <td>Kamers:</td>
+            <td>$kamer_Kamers</td>
+            <td>Slaapplaatsen:</td>
+            <td>$kamer_Slaapplaatsen</td>
+        </tr>
+        <tr>
+            <td>Prijs: €</td>
+            <td>$boeking_Prijs</td>
+            <td>Status:</td>
+            <td>$boeking_status_Naam</td>
+        </tr>
+
+    </table>
+
+    <hr />
+ 
+    <div style="width: 50%; padding-left: 25%;">
+
+        <hr/>
+        <br/>
+        U staat op het punt de bovenstaande boeking te betalen.<br/>
+        Na het betalen van de boeking wordt de boeking bevestigd en ontvangt u hier direct een betalingsbevestiging van in uw mailbox.
+        Wanneer u betaalt geeft u aan akkoord te gaan met al onze voorwaarden evenals de voorwaarden van de betalingsinstantie.
+        <br/>
+        <br/>
+        <a href="https://www.atinybird.com/nest/1285558323532.gif" target="_blank">Voorwaarden</a>
+
+        <hr/>
+
+        <br/>
+        <p id="paymentmethodhint"><b>Om te beginnen, selecteer alstublieft eerst uw gewenste betaalmethode!</b></p>
+        <br/>
+        
+        <form action="mybookings.php" method="POST" id="paymentform">
+
+            <script type="text/javascript">
+
+                var forminitiated = false;
+
+                function ShowInitialFormBr() {
+                    paymentmethodhint.hidden = true;
+                }
+
+                function SetIdealStuffHidden(value) {
+                    idealp.hidden = value;
+                }
+
+                function SetSubmitStuffHidden(value) {
+                    submitp.hidden = value;
+                }
+
+                function SetCreditCardStuffHidden(value) {
+                    creditcardp.hidden = value;
+                }
+
+                function PaymentMethod_Changed() {
+                    
+                    if (forminitiated == false) {
+                        ShowInitialFormBr();
+                        var ccexyyyycontrol = document.getElementById("creditcardexpirationyearpicker");
+                        var currentyear = new Date().getFullYear();
+                        ccexyyyycontrol.max = currentyear + 20;
+                        ccexyyyycontrol.value = currentyear;
+                        ccexyyyycontrol.min = currentyear;
+                        kiezenoption.hidden = true;
+                        SetSubmitStuffHidden(false);
+                        forminitiated = true;
+                    }
+                                       
+                    var paymentmethod = paymentmethodselector.value;
+                    switch (paymentmethod) {
+                        case "paypal":
+                            
+                            SetIdealStuffHidden(true);
+                            SetCreditCardStuffHidden(true);
+                                                        
+                            break;
+                        case "ideal":
+                            
+                            SetIdealStuffHidden(false);
+                            SetCreditCardStuffHidden(true);
+
+                            break;
+                        case "creditcard":
+                            
+                            SetIdealStuffHidden(true);
+                            SetCreditCardStuffHidden(false);
+
+                            break;
+                    }
+
+                }
+
+                function SubmitButton_Click() {
+
+                    var formcomplete = true;
+                    var paymentmethod = paymentmethodselector.value;
+                    
+                    if (acceptcheckbox.checked == false) {
+                        accepterror.hidden = false;
+                        formcomplete = false;
+                    }
+                    if (paymentmethod == 'creditcard') {
+
+                        var creditcardnumber = creditcardnumberbox.value;
+                        var creditcardcvvnumber = creditcardcvvbox.value;
+                        var creditcardexpmonth = creditcardexpirationmonthpicker.value;
+                        var creditcardexpyear = creditcardexpirationyearpicker.value;
+                        var creditcardname = creditcardnamebox.value;
+
+                        if (isNaN(creditcardnumber) || creditcardnumber.length != 16 || isNaN(creditcardcvvnumber) || creditcardcvvnumber.length != 3) {
+                            formcomplete = false;
+                            creditcardnumbererror.hidden = false;
+                        } else {
+                            creditcardnumbererror.hidden = true;
+                        }
+
+                        if (creditcardexpmonth < 1 || creditcardexpmonth > 12 || creditcardexpirationyearpicker.value < (new Date).getFullYear()) {
+                            formcomplete = false;
+                            creditcardexpirationerror.hidden = false;
+                        } else {
+                            creditcardexpirationerror.hidden = true;
+                        }
+
+                        if (!(creditcardname.length > 2)) {
+                            formcomplete = false;
+                            creditcardnamerror.hidden = false;
+                        } else {
+                            creditcardnamerror.hidden = true;
+                        }
+                        
+                    }
+
+                    if (formcomplete == true) {
+                        paymentform.submit();
+                    }
+
+                }
+
+                function AcceptCheckBox_Changed() {
+
+                    if (acceptcheckbox.checked == true) {
+                        accepterror.hidden = true;
+                    }
+
+                }
+
+                function ReturnToBookingsLink_Clicked() {
+
+                    var result = window.confirm("U heeft uw betaling nog niet ingediend!\nAls u nu teruggaat wordt uw betaling geannuleerd!\nWeet u zeker dat u terug wil gaan naar uw boekingen?");
+                    if (result == true) {
+                        window.location = "mybookings.php";
+                    }
+
+                }
+                
+            </script>
+
+            <input type="hidden" name="bookingid" value="$boeking_ID"/>
+            <input type="hidden" name="action" value="dopaybooking"/>
+
+            Betalingsmethode:
+            <select id="paymentmethodselector" name="paymentmethod" onchange="PaymentMethod_Changed()">
+                <option value="kiezen" selected id="kiezenoption">Kiezen</option>
+                <option value="paypal">PayPal</option>
+                <option value="ideal">Ideal</option>
+                <option value="creditcard">CreditCard</option>
+            </select>
+
+            <p id="idealp" hidden>
+                Gewenste bank:
+                <select id="idealproviderselector" name="idealprovider">
+                    <option value="ing">ING Bank</option>
+                    <option value="abn">ABN Amro</option>
+                    <option value="sns">SNS Bank</option>
+                    <option value="rabo">Rabobank</option>
+                </select>
+            </p>            
+
+            <p id="creditcardp" hidden>
+                Kaarttype: 
+                <select id="creditcardtypeselector" name="creditcardtype">
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">Mastercard</option>
+                </select><br/><br/>
+                <b hidden id="creditcardnumbererror" style="color: red;">U heeft een ongeldig kaartnummer of CVV opgegeven!<br/>Een kaartnummer moet 16 CIJFERS lang zijn.<br/>Een CVV nummer moet 3 CIJFERS lang zijn.<br/></b>
+                Kaartnummer en CVV Code: <br/>
+                <input type="text" id="creditcardnumberbox" name="creditcardnumber" maxlength="16"/>   <input type="text" id="creditcardcvvbox" name="creditcardcvv" style="width: 10%;"/><br/><br/>
+                <b hidden id="creditcardexpirationerror" style="color: red;">U heeft een ongeldige vervaldatum opgegeven!<br/></b>
+                Vervaldatum:<br/>
+                <input type="number" id="creditcardexpirationmonthpicker" name="creditcardexpirationmonth" style="width: 10%;" min="1" max="12" value="12"/> / 
+                <input type="number" id="creditcardexpirationyearpicker" name="creditcardexpirationyear" style="width: 10%;" value="2016"/> MM/JJ<br/><br/>
+                <b hidden id="creditcardnamerror" style="color: red;">U heeft een ongeldige naam opgegeven!<br/></b>
+                Naam op kaart:<br/>
+                <input type="text" name="creditcardname" id="creditcardnamebox"/>
+            </p>
+
+            <p id="submitp" hidden>
+                <b style="color: red;" id="accepterror" hidden>U dient akkoord te gaan met onze voorwaarden voor u kunt betalen!<br/></b>
+                <input type="checkbox" id="acceptcheckbox" name="accept" onchange="AcceptCheckBox_Changed()"/>
+                Door op BETALEN te klikken geef ik aan akkoord te gaan met alle voorwaarden!
+                <br/><br/>
+                <input type="button" value="BETALEN" id="submitbutton" onclick="SubmitButton_Click()"/>
+            </p>
+
+        </form>
+
+        <br/>
+        <hr/>
+        <a href="#" onclick="ReturnToBookingsLink_Clicked();" style="text-align: center; margin-left: 40%;">Terug naar mijn boekingen</a>
+        <br/>
+
+    </div>
+
+</div>
